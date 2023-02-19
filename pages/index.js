@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import Button from '../components/Button'
+// import type { NextPage } from "next";
+// import Head from "next/head";
 import styles from '../styles/home.module.css'
-
 function throwError() {
   console.log(
     // The function body() is not defined
@@ -10,6 +11,25 @@ function throwError() {
 }
 
 function Home() {
+  const [file, setFile] = useState(null);
+  const [base64Image, setBase64Image] = useState('');
+
+  const handleImageChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    console.log(selectedFile);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+
+    reader.onload = () => {
+      setBase64Image(reader.result);
+    };
+  };
+
+  const handleFileChange = e => {
+
+  };
 
   return (
     <main className={styles.main}>
@@ -21,9 +41,14 @@ function Home() {
       </p>
       <div style={{textAlign: "center;"}}>
         <div style={{textAlign: "center;"}}>
-          <form>
+          <form id="file-input">
             {/* <label for="myfile">Convert</label> */}
-            <input onInput={handleFileChange()} style ={{color: "blue;"}} type="file" id="myFile" name="filename"></input>
+            <input style ={{color: "blue;"}} type="file" id="myFile" name="filename" onChange={handleImageChange}></input>
+              {base64Image && (
+                <img src={base64Image} alt="Converted Image" />
+              )}
+            {/* <output id="output"></output> */}
+            {/* <button style = {{left: "22çpx;"}}type="submit">Submit</button> */}
             {/* <input style ={{color: "blue;"}} type="submit"></input> */}
             {/* input.addEventListener('change', handleFileChange); */}
           </form>
