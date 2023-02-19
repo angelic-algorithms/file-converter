@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
 import Button from '../components/Button'
-import ClickCount from '../components/ClickCount'
 import styles from '../styles/home.module.css'
 
 function throwError() {
@@ -11,61 +10,40 @@ function throwError() {
 }
 
 function Home() {
-  const [count, setCount] = useState(0)
-  const increment = useCallback(() => {
-    setCount((v) => v + 1)
-  }, [setCount])
-
-  useEffect(() => {
-    const r = setInterval(() => {
-      increment()
-    }, 1000)
-
-    return () => {
-      clearInterval(r)
-    }
-  }, [increment])
 
   return (
     <main className={styles.main}>
-      <h1>Fast Refresh Demo</h1>
-      <p>
-        Fast Refresh is a Next.js feature that gives you instantaneous feedback
-        on edits made to your React components, without ever losing component
-        state.
+      <div id="title" style={{textAlign: "center;"}}>
+        <h1>File Converter</h1>
+      </div>
+      <p style ={{color: "blue;", textAlign: "center;"}}>
+        Please input the file you'd like to convert.
       </p>
-      <hr className={styles.hr} />
-      <div>
-        <p>
-          Auto incrementing value. The counter won't reset after edits or if
-          there are errors.
-        </p>
-        <p>Current value: {count}</p>
+      <div style={{textAlign: "center;"}}>
+        <div style={{textAlign: "center;"}}>
+          <form>
+            {/* <label for="myfile">Convert</label> */}
+            <input onInput={handleFileChange()} style ={{color: "blue;"}} type="file" id="myFile" name="filename"></input>
+            {/* <input style ={{color: "blue;"}} type="submit"></input> */}
+            {/* input.addEventListener('change', handleFileChange); */}
+          </form>
+        </div>
+        <div style={{textAlign: "center;", margin: "10px;" }}>
+          <form action="/send-data-here" method="post">
+              <label style ={{color: "blue;"}} for="target-file-extension">Enter file extension to convert to </label>
+              <input type="text" id="target-file-extension" name="file-ext" />
+              <button style = {{left: "22çpx;"}}type="submit">Submit</button>
+          </form>
+        </div>
       </div>
-      <hr className={styles.hr} />
-      <div>
-        <p>Component with state.</p>
-        <ClickCount />
-      </div>
-      <hr className={styles.hr} />
-      <div>
-        <p>
-          The button below will throw 2 errors. You'll see the error overlay to
-          let you know about the errors but it won't break the page or reset
-          your state.
-        </p>
-        <Button
-          onClick={(e) => {
-            setTimeout(() => document.parentNode(), 0)
-            throwError()
-          }}
-        >
-          Throw an Error
-        </Button>
-      </div>
-      <hr className={styles.hr} />
     </main>
   )
 }
 
 export default Home
+
+function handleFileChange(value) {
+  
+  console.log(value);
+
+}
