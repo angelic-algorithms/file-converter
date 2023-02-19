@@ -1,13 +1,15 @@
-# GitHub Codespaces ♥️ Next.js
+# file-converter
 
-Welcome to your shiny new Codespace running Next.js! We've got everything fired up and running for you to explore Next.js.
+ `file-converter` is an open-source web-based tool that allows users to convert files from one format to another. The project is designed to be user-friendly and accessible to users of all levels of technical expertise, making it an ideal solution for a wide range of file conversion needs.
 
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with the what you're seeing right now - where you go from here is up to you!
+To use the tool, the user simply uploads the file they wish to convert and selects the output format they want to convert to. For instance, a user might upload a   `.jpg` file and select `.png` as the output format. The file-converter then performs the necessary conversion and provides the user with download of the newly converted file.
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
-
-To run this application:
+How to run this application:
 
 ```
 npm run dev
 ```
+
+Using codespaces:
+
+URL to the build will be within the `ports` tab
